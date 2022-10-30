@@ -50,9 +50,9 @@ namespace Todo.Api.Identity
                     ValidateIssuer = true,
                     ValidateAudience = true,
                     ValidateLifetime = true,
-                    ValidAudience = configuration["JWT:ValidAudience"],
-                    ValidIssuer = configuration["JWT:ValidIssuer"],
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JWT:Secret"]))
+                    ValidAudience = configuration["JwtSettings:Issuer"],
+                    ValidIssuer = configuration["JwtSettings:ValidIssuer"],
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JwtSettings:Key"]))
                 };
             });
 
