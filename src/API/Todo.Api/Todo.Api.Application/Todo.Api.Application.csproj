@@ -10,4 +10,10 @@
     <ProjectReference Include="..\Todo.Api.Domain\Todo.Api.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Identity\" />
+    <Folder Include="Instrastructure\" />
+    <Folder Include="Persistance\" />
+  </ItemGroup>
+
 </Project>
