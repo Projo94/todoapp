@@ -1,5 +1,6 @@
 using Todo.Api.Application;
 using Todo.Api.Identity;
+using Todo.Api.Middleware;
 using Todo.Api.Persistance;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -33,6 +34,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCustomExceptionHandler();
 
 app.UseCors("Open");
 
