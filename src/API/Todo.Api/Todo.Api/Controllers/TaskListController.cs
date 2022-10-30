@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Todo.Api.Application.Features.Queries.GetTaskList;
 using Todo.Api.Application.Features.TaskLists.Commands.CreateTaskList;
 using Todo.Api.Application.Features.TaskLists.Commands.DeleteTaskList;
+using Todo.Api.Application.Features.TaskLists.Commands.UpdateTaskList;
 using Todo.Api.Application.Features.TaskLists.Queries.GetTaskList;
 
 namespace Todo.Api.Controllers
@@ -54,6 +55,21 @@ namespace Todo.Api.Controllers
             var deleteTaskList = new DeleteTaskListCommand { Id = id };
 
             await Mediator.Send(deleteTaskList);
+
+            return NoContent();
+        }
+
+        [HttpPut(Name = "UpdateTaskList")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesDefaultResponseType]
+        public async Task<ActionResult> Update([FromBody] UpdateTaskListDto updateTaskListDto)
+        {
+            var updateTaskListCommand = _mapper.Map<UpdateTaskListCommand>(updateTaskListDto);
+
+            updateTaskListCommand.CreatedByUserId = User.Identity?.Name ?? throw new Exception();
+
+            await Mediator.Send(updateTaskListCommand);
 
             return NoContent();
         }
