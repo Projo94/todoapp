@@ -1,4 +1,5 @@
 using Todo.Api.Identity;
+using Todo.Api.Persistance;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,7 +19,9 @@ builder.Services.AddEndpointsApiExplorer();
 
 IConfiguration configuration = builder.Configuration;
 
-builder.Services.AddIdentityServices(configuration);
+builder.Services
+    .AddIdentityServices(configuration)
+    .AddPersistenceServices(configuration);
 
 var app = builder.Build();
 
