@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System.Reflection;
 using Todo.Api.Application.Contracts.Persistence;
 using Todo.Api.Persistance.Repositories;
 
@@ -16,6 +17,8 @@ namespace Todo.Api.Persistance
             services.AddScoped(typeof(IAsyncRepository<>), typeof(BaseRepository<>));
             services.AddScoped<ITaskListRepository, TaskListRepository>();
             services.AddScoped<ITaskRepository, TaskRepository>();
+
+            services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
             return services;
         }
