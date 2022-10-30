@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Todo.Api.Application.Features.Queries.GetTaskList;
+using Todo.Api.Application.Features.TaskLists.Commands.CreateTaskList;
 using Todo.Api.Application.Features.TaskLists.Queries.GetTaskList;
 
 namespace Todo.Api.Controllers
@@ -30,6 +31,17 @@ namespace Todo.Api.Controllers
 
             var dtos = await Mediator.Send(new GetTaskListQuery { filter = filter });
             return Ok(dtos);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<CreateTaskListCommandResponse>> Create([FromBody] CreateTaskListDto createTaskListDto)
+        {
+            var createTaskList = _mapper.Map<CreateTaskListCommand>(createTaskListDto);
+            createTaskList.CreatedByUserId = User.Identity?.Name ?? throw new Exception(); ;
+
+            var response = await Mediator.Send(createTaskList);
+
+            return Ok(response);
         }
     }
 }
