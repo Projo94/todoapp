@@ -4,6 +4,12 @@ namespace Todo.Api.Identity.Models
 {
     public class RegisterModel
     {
+        [Required(ErrorMessage = "First name is required")]
+        public string FirstName { get; set; }
+
+        [Required(ErrorMessage = "Last name is required")]
+        public string LastName { get; set; }
+
         [Required(ErrorMessage = "Username is required")]
         public string Username { get; set; }
 
@@ -14,8 +20,6 @@ namespace Todo.Api.Identity.Models
         [Required(ErrorMessage = "Email is required")]
         public string Email { get; set; }
 
-        //[RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$",
-        //    ErrorMessage = "Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character")]
         [Required(ErrorMessage = "Password is required")]
         public string Password { get; set; }
     }

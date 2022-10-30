@@ -2,12 +2,9 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using System;
-using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using System.Threading.Tasks;
 using Todo.Api.Application.Contracts.Identity;
 using Todo.Api.Application.Models.Authentication;
 using Todo.Api.Identity.Models;
@@ -117,7 +114,6 @@ namespace Todo.Api.Identity.Services
                 authClaims.Add(new Claim(ClaimTypes.Role, userRole));
             }
 
-
             var authSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT:Key"]));
 
             var jwtSecurityToken = new JwtSecurityToken(
@@ -130,6 +126,5 @@ namespace Todo.Api.Identity.Services
 
             return jwtSecurityToken;
         }
-
     }
 }

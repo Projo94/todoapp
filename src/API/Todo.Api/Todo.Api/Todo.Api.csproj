@@ -19,10 +19,6 @@
   </ItemGroup>
 
 	<ItemGroup>
-		<Folder Include="Controllers\" />
-	</ItemGroup>
-
-	<ItemGroup>
 		<ProjectReference Include="..\Todo.Api.Application\Todo.Api.Application.csproj" />
 		<ProjectReference Include="..\Todo.Api.Identity\Todo.Api.Identity.csproj" />
 		<ProjectReference Include="..\Todo.Api.Infrastructure\Todo.Api.Infrastructure.csproj" />
