@@ -1,5 +1,6 @@
 using Todo.Api.Application;
 using Todo.Api.Identity;
+using Todo.Api.Infrastructure;
 using Todo.Api.Middleware;
 using Todo.Api.Persistance;
 
@@ -24,6 +25,7 @@ IConfiguration configuration = builder.Configuration;
 builder.Services
     .AddIdentityServices(configuration)
     .AddPersistenceServices(configuration)
+    .AddInfrastructureServices(configuration)
     .AddApplicationServices();
 
 var app = builder.Build();

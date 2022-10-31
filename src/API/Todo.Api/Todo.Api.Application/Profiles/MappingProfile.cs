@@ -36,9 +36,6 @@ namespace Todo.Api.Application.Profiles
             CreateMap<TaskFilter, Models.Filters.TaskFilterDto>().ReverseMap();
 
             CreateMap<Entities.Task, Features.Task.Queries.GetTask.TaskVm>().ReverseMap();
-
-
-
         }
     }
 }
