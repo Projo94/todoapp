@@ -2,6 +2,7 @@
 using Todo.Api.Application.Features.Queries.GetTaskList;
 using Todo.Api.Application.Features.TaskList.Queries.GetTaskList;
 using Todo.Api.Application.Features.TaskLists.Commands.CreateTaskList;
+using Todo.Api.Application.Features.TaskLists.Commands.UpdateTaskList;
 using Todo.Api.Application.Filtering;
 using Entities = Todo.Api.Domain.Entities;
 
@@ -20,6 +21,10 @@ namespace Todo.Api.Application.Profiles
             CreateMap<TaskListDto, Entities.TaskList>().ReverseMap();
 
             CreateMap<CreateTaskListCommand, CreateTaskListDto>().ReverseMap();
+            CreateMap<UpdateTaskListCommand, UpdateTaskListDto>().ReverseMap();
+
+            CreateMap<Entities.TaskList, CreateTaskListCommand>().ReverseMap();
+            CreateMap<Entities.TaskList, UpdateTaskListCommand>().ReverseMap();
         }
     }
 }

@@ -43,6 +43,7 @@ namespace Todo.Api.Identity
             })
             .AddJwtBearer(options =>
             {
+                options.Authority = configuration["JwtSettings:AuthorityTodo"];
                 options.SaveToken = true;
                 options.RequireHttpsMetadata = false;
                 options.TokenValidationParameters = new TokenValidationParameters()
@@ -50,8 +51,8 @@ namespace Todo.Api.Identity
                     ValidateIssuer = true,
                     ValidateAudience = true,
                     ValidateLifetime = true,
-                    ValidAudience = configuration["JwtSettings:Issuer"],
-                    ValidIssuer = configuration["JwtSettings:ValidIssuer"],
+                    ValidAudience = configuration["JwtSettings:Audience"],
+                    ValidIssuer = configuration["JwtSettings:Issuer"],
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JwtSettings:Key"]))
                 };
             });
@@ -72,9 +73,9 @@ namespace Todo.Api.Identity
             //            ValidateAudience = true,
             //            ValidateLifetime = true,
             //            ClockSkew = TimeSpan.Zero,
-            //            ValidIssuer = configuration["Jwt:ValidIssuer"],
+            //            ValidIssuer = configuration["Jwt:JwtSettings"],
             //            ValidAudience = configuration["Jwt:ValidAudience"],
-            //            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["Jwt:Key"]))
+            //            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JwtSettings:Key"]))
             //        };
 
             //        o.Events = new JwtBearerEvents()

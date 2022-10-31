@@ -39,7 +39,7 @@ namespace Todo.Api.Controllers
         public async Task<ActionResult<CreateTaskListCommandResponse>> Create([FromBody] CreateTaskListDto createTaskListDto)
         {
             var createTaskList = _mapper.Map<CreateTaskListCommand>(createTaskListDto);
-            createTaskList.CreatedByUserId = User.Identity?.Name ?? throw new Exception(); ;
+            createTaskList.CreatedByUserId = User.Identity?.Name ?? throw new Exception();
 
             var response = await Mediator.Send(createTaskList);
 

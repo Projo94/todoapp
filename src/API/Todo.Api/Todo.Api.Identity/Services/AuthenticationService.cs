@@ -97,25 +97,18 @@ namespace Todo.Api.Identity.Services
 
         private async Task<JwtSecurityToken> GenerateToken(ApplicationUser user)
         {
-            var userClaims = await _userManager.GetClaimsAsync(user);
-            var roles = await _userManager.GetRolesAsync(user);
+            var userRoles = await _userManager.GetRolesAsync(user);
 
-            var roleClaims = new List<Claim>();
+            var authClaims = new List<Claim>
+                {
+                    new Claim(ClaimTypes.Name, user.UserName),
+                    new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                };
 
-            for (int i = 0; i < roles.Count; i++)
+            foreach (var userRole in userRoles)
             {
-                roleClaims.Add(new Claim("roles", roles[i]));
+                authClaims.Add(new Claim(ClaimTypes.Role, userRole));
             }
-
-            var claims = new[]
-            {
-                new Claim(JwtRegisteredClaimNames.Sub, user.UserName),
-                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-                new Claim(JwtRegisteredClaimNames.Email, user.Email),
-                new Claim("uid", user.Id)
-            }
-            .Union(userClaims)
-            .Union(roleClaims);
 
             var symmetricSecurityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSettings.Key));
             var signingCredentials = new SigningCredentials(symmetricSecurityKey, SecurityAlgorithms.HmacSha256);
@@ -123,7 +116,7 @@ namespace Todo.Api.Identity.Services
             var jwtSecurityToken = new JwtSecurityToken(
                 issuer: _jwtSettings.Issuer,
                 audience: _jwtSettings.Audience,
-                claims: claims,
+                claims: authClaims,
                 expires: DateTime.UtcNow.AddMinutes(_jwtSettings.DurationInMinutes),
                 signingCredentials: signingCredentials);
             return jwtSecurityToken;
