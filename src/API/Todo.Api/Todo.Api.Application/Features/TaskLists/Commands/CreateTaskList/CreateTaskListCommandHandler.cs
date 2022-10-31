@@ -29,6 +29,7 @@ namespace Todo.Api.Application.Features.TaskLists.Commands.CreateTaskList
             {
                 createTaskListCommandResponse.Success = false;
                 createTaskListCommandResponse.ValidationErrors = new List<string>();
+
                 foreach (var error in validationResult.Errors)
                 {
                     createTaskListCommandResponse.ValidationErrors.Add(error.ErrorMessage);

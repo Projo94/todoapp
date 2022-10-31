@@ -34,6 +34,11 @@ namespace Todo.Api.Persistance.Repositories
             return await query.Skip((page - 1) * size).Take(size).ToListAsync();
         }
 
+        public async Task<string> GetTimeZoneAsync(int Id)
+        {
+            return await _context.TaskLists.Where(x => x.Id == Id).Select(x => x.TimeZone).FirstOrDefaultAsync();
+        }
+
         private IQueryable<TaskList> ApplyFilter(IQueryable<TaskList> source, ListFilterDto filter)
         {
             source = source.Where(a => a.CreatedByUserId == filter.UserId);
