@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Todo.Api.Application.Contracts.Persistence;
+using Todo.Api.Application.Models.UserNotification;
 using Todo.Api.Domain.Entities;
 using Todo.Api.Persistance.Models;
 
@@ -16,6 +17,40 @@ namespace Todo.Api.Persistance.Repositories
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
             _mapper = mapper;
+        }
+
+        public Task<List<UserNotification>> GetDataForNotificationAsync()
+        {
+            var userNotifications = new List<UserNotification>();
+
+            var now = DateTimeOffset.Now; ; // exclude seconds
+
+            var taskListIds = _context.TaskLists.ToList().
+                Where(t =>
+                 TimeZoneInfo.ConvertTime(now, TimeZoneInfo.FindSystemTimeZoneById(t.TimeZone)).DateTime.Year == now.Date.Year &&
+                 TimeZoneInfo.ConvertTime(now, TimeZoneInfo.FindSystemTimeZoneById(t.TimeZone)).DateTime.Month == now.Date.Month &&
+                 TimeZoneInfo.ConvertTime(now, TimeZoneInfo.FindSystemTimeZoneById(t.TimeZone)).DateTime.Day == now.Date.Day &&
+                 TimeZoneInfo.ConvertTime(now, TimeZoneInfo.FindSystemTimeZoneById(t.TimeZone)).DateTime.Hour == now.Date.Hour &&
+                 TimeZoneInfo.ConvertTime(now, TimeZoneInfo.FindSystemTimeZoneById(t.TimeZone)).DateTime.Minute == now.Date.Minute
+                 //&& TimeZoneInfo.ConvertTime(t.DailyList, TimeZoneInfo.FindSystemTimeZoneById(t.TimeZone)).DateTime > now.Date.AddDays(-1) //TODO Check if dailylist date is previous day(day prior to midnight
+                 //&& TimeZoneInfo.ConvertTime(t.DailyList, TimeZoneInfo.FindSystemTimeZoneById(t.TimeZone)).DateTime < now.Date
+                 )
+                // take all timezones for which datetimeoffset is midnight
+                .Select(x => new { x.Id, x.CreatedByUserId })
+                .AsEnumerable()
+                .ToDictionary(kvp => kvp.Id, kvp => kvp.CreatedByUserId);
+
+            taskListIds.ToList()
+              .ForEach(x =>
+                userNotifications.Add(
+                    new UserNotification(_context.Tasks
+                        .Where(p =>
+                            p.TaskListId == x.Key &&
+                            p.IsDone == true)
+                        .Count(),
+                        x.Value)));
+
+            return System.Threading.Tasks.Task.FromResult(userNotifications);
         }
 
         public async Task<List<TaskList>> GetItemsAsync(Application.Models.Filters.ListFilterDto filterDto)

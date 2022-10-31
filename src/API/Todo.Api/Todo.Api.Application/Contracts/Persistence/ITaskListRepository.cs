@@ -1,4 +1,5 @@
 ﻿using Todo.Api.Application.Models.Filters;
+using Todo.Api.Application.Models.UserNotification;
 using Todo.Api.Domain.Entities;
 
 namespace Todo.Api.Application.Contracts.Persistence
@@ -8,5 +9,7 @@ namespace Todo.Api.Application.Contracts.Persistence
         Task<List<TaskList>> GetItemsAsync(ListFilterDto filter);
 
         Task<string> GetTimeZoneAsync(int Id);
+
+        Task<List<UserNotification>> GetDataForNotificationAsync();
     }
 }
