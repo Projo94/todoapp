@@ -17,7 +17,7 @@
             }
             else
             {
-                return string.IsNullOrEmpty(timezone);
+                return false;
             }
         }
     }

@@ -7,8 +7,7 @@ namespace Todo.Api.Application.Features.TaskLists.Commands.CreateTaskList
     {
         public CreateTaskListCommandValidator()
         {
-            RuleFor(x => x).Must(p =>
-                p.TimeZone.IsValidTimezone())
+            RuleFor(x => x.TimeZone).Must(ValidTimezone)
                 .WithMessage("Timezone is not valid!");
 
             RuleFor(x => x.DailyList).NotNull().NotEmpty();
@@ -24,6 +23,11 @@ namespace Todo.Api.Application.Features.TaskLists.Commands.CreateTaskList
                 x.Description.Length <= 100)
                 .WithMessage("Length of Description field is required and could be 100 max characters ")
                 .NotNull();
+        }
+
+        private bool ValidTimezone(string timezone)
+        {
+            return timezone.IsValidTimezone();
         }
     }
 }
