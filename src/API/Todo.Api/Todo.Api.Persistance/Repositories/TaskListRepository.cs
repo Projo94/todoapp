@@ -5,6 +5,7 @@ using Todo.Api.Application.Helpers;
 using Todo.Api.Application.Models.UserNotification;
 using Todo.Api.Domain.Entities;
 using Todo.Api.Persistance.Models;
+using Task = System.Threading.Tasks.Task;
 
 namespace Todo.Api.Persistance.Repositories
 {
@@ -60,14 +61,17 @@ namespace Todo.Api.Persistance.Repositories
 
 
             taskListIds.ToList()
-              .ForEach(x => userNotifications.Add(new UserNotification(_context.Tasks
+              .ForEach(x =>
+                userNotifications.Add(
+                    new UserNotification
+                     (_context.Tasks
                         .Where(p =>
                             p.TaskListId == x.Key &&
                             p.IsDone == true)
                         .Count(),
                         x.Value)));
 
-            return System.Threading.Tasks.Task.FromResult(userNotifications);
+            return Task.FromResult(userNotifications);
         }
 
         public async Task<List<TaskList>> GetItemsAsync(Application.Models.Filters.ListFilterDto filterDto)
@@ -88,7 +92,10 @@ namespace Todo.Api.Persistance.Repositories
 
         public async Task<string> GetTimeZoneAsync(int Id)
         {
-            return await _context.TaskLists.Where(x => x.Id == Id).Select(x => x.TimeZone).FirstOrDefaultAsync();
+            return await _context.TaskLists
+                .Where(x => x.Id == Id)
+                .Select(x => x.TimeZone)
+                .FirstOrDefaultAsync() ?? throw new Exception(nameof(GetTimeZoneAsync));
         }
 
         private IQueryable<TaskList> ApplyFilter(IQueryable<TaskList> source, ListFilterDto filter)
@@ -97,13 +104,16 @@ namespace Todo.Api.Persistance.Repositories
 
             if (!string.IsNullOrEmpty(filter.Title))
             {
-                source = source.Where(a => a.Title.ToUpper().Contains(filter.Title.ToUpper()));
+                source = source.Where(a => a.Title
+                    .ToUpper()
+                    .Contains(filter.Title.ToUpper()));
             }
 
             if (filter.Date.HasValue)
             {
                 var date = filter.Date.Value;
-                source = source.Where(a => a.DailyList == date); //TODO change two dates on filter, FromDate and ToDate
+                source = source.Where(a =>
+                    a.DailyList.Date == date.Date);
             }
 
             return source;
