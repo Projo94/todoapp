@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{A3A66BB6-C539-46D7-8414-8113F70B701B}"
+	ProjectSection(SolutionItems) = preProject
+		Todo.Api.Test\TodoAPI.postman_collection.json = Todo.Api.Test\TodoAPI.postman_collection.json
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "API", "API", "{0C7744F1-C804-4D3F-A4CA-BFC410C11A4C}"
 EndProject
@@ -11,15 +14,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{FC72992C-C
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastucture", "Infrastucture", "{8EB9A54A-8B52-4BC3-90B2-0CBA51E2E09A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Todo.Api.Application", "Todo.Api.Application\Todo.Api.Application.csproj", "{B04F8C4D-D4D0-4383-B2C2-F4BFFF442D83}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Todo.Api.Application", "Todo.Api.Application\Todo.Api.Application.csproj", "{B04F8C4D-D4D0-4383-B2C2-F4BFFF442D83}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Todo.Api.Domain", "Todo.Api.Domain\Todo.Api.Domain.csproj", "{27F374F6-9474-4E1A-AB2A-126D439CA32D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Todo.Api.Domain", "Todo.Api.Domain\Todo.Api.Domain.csproj", "{27F374F6-9474-4E1A-AB2A-126D439CA32D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Todo.Api.Identity", "Todo.Api.Identity\Todo.Api.Identity.csproj", "{DA0E5428-5451-441B-BED7-90505202CDF5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Todo.Api.Identity", "Todo.Api.Identity\Todo.Api.Identity.csproj", "{DA0E5428-5451-441B-BED7-90505202CDF5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Todo.Api.Infrastructure", "Todo.Api.Infrastructure\Todo.Api.Infrastructure.csproj", "{3DF53A0B-24BF-4C11-AEA3-787CD72A93B5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Todo.Api.Infrastructure", "Todo.Api.Infrastructure\Todo.Api.Infrastructure.csproj", "{3DF53A0B-24BF-4C11-AEA3-787CD72A93B5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Todo.Api.Persistance", "Todo.Api.Persistance\Todo.Api.Persistance.csproj", "{6060E195-919F-4C0C-AA0C-A1A24150B559}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Todo.Api.Persistance", "Todo.Api.Persistance\Todo.Api.Persistance.csproj", "{6060E195-919F-4C0C-AA0C-A1A24150B559}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Todo.Api", "Todo.Api\Todo.Api.csproj", "{BA4B463E-AF66-4829-8F1E-7E09AB3E0404}"
 EndProject

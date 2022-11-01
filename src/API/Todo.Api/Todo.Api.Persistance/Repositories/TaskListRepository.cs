@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Todo.Api.Application.Contracts.Persistence;
+using Todo.Api.Application.Helpers;
 using Todo.Api.Application.Models.UserNotification;
 using Todo.Api.Domain.Entities;
 using Todo.Api.Persistance.Models;
@@ -23,22 +24,40 @@ namespace Todo.Api.Persistance.Repositories
         {
             var userNotifications = new List<UserNotification>();
 
-            var now = DateTimeOffset.Now; ; // exclude seconds
+            var now = DateTimeOffset.Now;
 
+            var midnight = DateTimeOffset.Now.Date;
+
+            var midnightAdd = DateTimeOffset.Now.AddDays(1).Date;
+
+            var midnightRemove = DateTimeOffset.Now.AddDays(-1).Date; ;
+
+            // take all timezones for which datetimeoffset is midnight
             var taskListIds = _context.TaskLists.ToList().
-                Where(t =>
-                 TimeZoneInfo.ConvertTime(now, TimeZoneInfo.FindSystemTimeZoneById(t.TimeZone)).DateTime.Year == now.Date.Year &&
-                 TimeZoneInfo.ConvertTime(now, TimeZoneInfo.FindSystemTimeZoneById(t.TimeZone)).DateTime.Month == now.Date.Month &&
-                 TimeZoneInfo.ConvertTime(now, TimeZoneInfo.FindSystemTimeZoneById(t.TimeZone)).DateTime.Day == now.Date.Day &&
-                 TimeZoneInfo.ConvertTime(now, TimeZoneInfo.FindSystemTimeZoneById(t.TimeZone)).DateTime.Hour == now.Date.Hour &&
-                 TimeZoneInfo.ConvertTime(now, TimeZoneInfo.FindSystemTimeZoneById(t.TimeZone)).DateTime.Minute == now.Date.Minute
-                 //&& TimeZoneInfo.ConvertTime(t.DailyList, TimeZoneInfo.FindSystemTimeZoneById(t.TimeZone)).DateTime > now.Date.AddDays(-1) //TODO Check if dailylist date is previous day(day prior to midnight
-                 //&& TimeZoneInfo.ConvertTime(t.DailyList, TimeZoneInfo.FindSystemTimeZoneById(t.TimeZone)).DateTime < now.Date
-                 )
-                // take all timezones for which datetimeoffset is midnight
-                .Select(x => new { x.Id, x.CreatedByUserId })
-                .AsEnumerable()
-                .ToDictionary(kvp => kvp.Id, kvp => kvp.CreatedByUserId);
+              Where(t =>
+                (now.ConvertToTimezone(t.TimeZone) > midnightAdd &&
+                DateTimeOffsetCompareWithoutSeconds(now.ConvertToTimezone(t.TimeZone), midnightAdd) &&
+                t.DailyList.ConvertToTimezone(t.TimeZone) > midnight &&
+                t.DailyList.ConvertToTimezone(t.TimeZone) < midnightAdd)
+                ||
+                (now.ConvertToTimezone(t.TimeZone) > midnightRemove &&
+                DateTimeOffsetCompareWithoutSeconds(now.ConvertToTimezone(t.TimeZone), midnight) &&
+                t.DailyList.ConvertToTimezone(t.TimeZone) > midnightRemove &&
+                t.DailyList.ConvertToTimezone(t.TimeZone) < midnight)
+                ||
+                (now.ConvertToTimezone(t.TimeZone) == now &&
+                DateTimeOffsetCompareWithoutSeconds(now.ConvertToTimezone(t.TimeZone), midnight) &&
+                t.DailyList.ConvertToTimezone(t.TimeZone).Date == midnightAdd.Date))
+             .Select(x => new
+             {
+                 x.Id,
+                 x.CreatedByUserId
+             })
+             .AsEnumerable()
+             .ToDictionary(
+                kvp => kvp.Id,
+                kvp => kvp.CreatedByUserId);
+
 
             taskListIds.ToList()
               .ForEach(x =>
@@ -90,6 +109,20 @@ namespace Todo.Api.Persistance.Repositories
             }
 
             return source;
+        }
+
+        private bool DateTimeOffsetCompareWithoutSeconds(DateTimeOffset dateTimeOffset1, DateTimeOffset dateTimeOffset2)
+        {
+            if (dateTimeOffset1.Year == dateTimeOffset2.Year &&
+                dateTimeOffset1.Month == dateTimeOffset2.Month &&
+                dateTimeOffset1.Day == dateTimeOffset2.Day &&
+                dateTimeOffset1.Hour == dateTimeOffset2.Hour &&
+                dateTimeOffset1.Minute == dateTimeOffset2.Minute)
+            {
+                return true;
+            }
+
+            return false;
         }
     }
 }
