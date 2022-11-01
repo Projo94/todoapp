@@ -18,23 +18,15 @@ namespace Todo.Api.Persistance.Repositories
             _mapper = mapper;
         }
 
-        public async Task<List<Entities.Task>> GetItemsAsync(Application.Models.Filters.TaskFilterDto filterDto)
+        public async Task<List<Entities.Task>> GetItemsAsync(TaskFilterDto filterDto)
         {
-            //var filter = _mapper.Map<ListFilterDto>(filterDto);
-
-            var filter = new TaskFilterDto
-            {
-                TaskListId = filterDto.TaskListId,
-                Deadline = filterDto.Deadline,
-                IsDone = filterDto.IsDone
-            };
+            var filter = _mapper.Map<TaskFilterDto>(filterDto);
 
             var query = _context.Tasks
                 .AsNoTracking()
                 .AsQueryable(); ;
 
             query = ApplyFilter(query, filter);
-
 
             return await query.ToListAsync();
         }

@@ -27,7 +27,6 @@ namespace Todo.Api.Application.Features.Task.Queries.GetTask
 
             var results = _mapper.Map<IEnumerable<Entities.Task>, IEnumerable<TaskVm>>(tasks).ToList();
 
-
             foreach (var item in results)
             {
                 var timezone = await _taskListRepository.GetTimeZoneAsync(item.TaskListId);
