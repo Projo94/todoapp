@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using MediatR;
+﻿using MediatR;
 using Todo.Api.Application.Contracts.Persistence;
 using Todo.Api.Application.Exceptions;
 using Entities = Todo.Api.Domain.Entities;

@@ -6,8 +6,8 @@ using Todo.Api.Application.Features.Task.Commands.CreateTask;
 using Todo.Api.Application.Features.Task.Commands.DeleteTask;
 using Todo.Api.Application.Features.Task.Commands.UpdateTask;
 using Todo.Api.Application.Features.Task.Queries.GetTask;
-using Queries = Todo.Api.Application.Features.TaskList.Queries.GetTaskList;
 using Todo.Api.Application.Filtering;
+using Queries = Todo.Api.Application.Features.TaskList.Queries.GetTaskList;
 
 namespace Todo.Api.Controllers
 {

@@ -1,5 +1,4 @@
 ﻿using System.Text.Json.Serialization;
-using Todo.Api.Application.Features.TaskList.Queries.GetTaskList;
 
 namespace Todo.Api.Application.Features.Queries.GetTaskList
 {

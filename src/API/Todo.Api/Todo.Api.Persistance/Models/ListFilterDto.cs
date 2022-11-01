@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Todo.Api.Persistance.Models
+﻿namespace Todo.Api.Persistance.Models
 {
     public class ListFilterDto
     {

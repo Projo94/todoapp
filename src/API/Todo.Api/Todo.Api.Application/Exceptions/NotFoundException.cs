@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Todo.Api.Application.Exceptions
+﻿namespace Todo.Api.Application.Exceptions
 {
     public class NotFoundException : ApplicationException
     {

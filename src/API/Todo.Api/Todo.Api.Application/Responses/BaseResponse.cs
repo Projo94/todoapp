@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Todo.Api.Application.Responses
+﻿namespace Todo.Api.Application.Responses
 {
     public class BaseResponse
     {

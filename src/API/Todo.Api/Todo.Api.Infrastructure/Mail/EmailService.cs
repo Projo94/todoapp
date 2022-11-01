@@ -1,10 +1,10 @@
-﻿using MailKit.Security;
+﻿using MailKit.Net.Smtp;
+using MailKit.Security;
 using Microsoft.Extensions.Configuration;
 using MimeKit;
 using MimeKit.Text;
 using Todo.Api.Application.Contracts.Infrastructure;
 using Todo.Api.Application.Models.Mail;
-using MailKit.Net.Smtp;
 
 namespace Todo.Api.Infrastructure.Mail
 {

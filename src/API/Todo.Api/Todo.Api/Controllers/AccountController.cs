@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Cors;
+﻿using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Todo.Api.Application.Models.Authentication;
 using IdentityApp = Todo.Api.Application.Contracts.Identity;

@@ -1,15 +1,14 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using Todo.Api.Application.Contracts.Identity;
+using Todo.Api.Application.Models.Authentication;
 using Todo.Api.Identity.Models;
 using Todo.Api.Identity.Services;
-using Microsoft.EntityFrameworkCore;
-using Todo.Api.Application.Models.Authentication;
-using Todo.Api.Application.Contracts.Identity;
-using Microsoft.AspNetCore.Http;
 
 namespace Todo.Api.Identity
 {

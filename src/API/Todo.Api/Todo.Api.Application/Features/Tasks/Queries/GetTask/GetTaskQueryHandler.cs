@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using MediatR;
-using Entities = Todo.Api.Domain.Entities;
 using Todo.Api.Application.Contracts.Persistence;
 using Todo.Api.Application.Models.Filters;
+using Entities = Todo.Api.Domain.Entities;
 
 namespace Todo.Api.Application.Features.Task.Queries.GetTask
 {

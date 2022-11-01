@@ -1,6 +1,4 @@
-﻿using System.Text.Json.Serialization;
-
-namespace Todo.Api.Application.Filtering
+﻿namespace Todo.Api.Application.Filtering
 {
     public class ListFilter
     {

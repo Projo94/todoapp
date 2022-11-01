@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
 using MediatR;
-using Todo.Api.Application.Features.Queries.GetTaskList;
-using Enities = Todo.Api.Domain.Entities;
 using Todo.Api.Application.Contracts.Persistence;
+using Todo.Api.Application.Features.Queries.GetTaskList;
 using Todo.Api.Application.Models.Filters;
+using Enities = Todo.Api.Domain.Entities;
 
 namespace Todo.Api.Application.Features.TaskLists.Queries.GetTaskList
 {
