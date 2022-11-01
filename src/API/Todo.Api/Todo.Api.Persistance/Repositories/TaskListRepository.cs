@@ -60,9 +60,7 @@ namespace Todo.Api.Persistance.Repositories
 
 
             taskListIds.ToList()
-              .ForEach(x =>
-                userNotifications.Add(
-                    new UserNotification(_context.Tasks
+              .ForEach(x => userNotifications.Add(new UserNotification(_context.Tasks
                         .Where(p =>
                             p.TaskListId == x.Key &&
                             p.IsDone == true)
