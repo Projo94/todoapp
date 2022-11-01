@@ -26,11 +26,11 @@ namespace Todo.Api.Persistance.Repositories
 
             var now = DateTimeOffset.Now;
 
-            var midnight = DateTimeOffset.Now.Date;
+            var midnight = now.Date;
 
-            var midnightAdd = DateTimeOffset.Now.AddDays(1).Date;
+            var midnightAdd = now.AddDays(1).Date;
 
-            var midnightRemove = DateTimeOffset.Now.AddDays(-1).Date; ;
+            var midnightRemove = now.AddDays(-1).Date;
 
             // take all timezones for which datetimeoffset is midnight
             var taskListIds = _context.TaskLists.ToList().
