@@ -12,11 +12,14 @@
 				{
 					"name": "Authentication",
 					"request": {
+						"auth": {
+							"type": "noauth"
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"username\": \"MarkoProjovic\",\r\n  \"password\": \"Password1\"\r\n}",
+							"raw": "{\r\n  \"username\": \"Testttt\",\r\n  \"password\": \"Password1\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -45,108 +48,1111 @@
 			"name": "Task list",
 			"item": [
 				{
-					"name": "Create new task list",
+					"name": "Create",
+					"item": [
+						{
+							"name": "Valid",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiVGVzdHR0dCIsImp0aSI6ImUwMzg3ZDdhLTVjMzUtNDMxNC05ZTk5LTFjNjMxZTYxMDg0OSIsImV4cCI6MTY2NzM0MjIxMSwiaXNzIjoiVG9kb0lkZW50aXR5IiwiYXVkIjoiVG9kb0lkZW50aXR5VXNlciJ9.yYFK70TxRSG5oItbW8PSzQ6A4ETc7RQM_ZDhddLRF3U",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"title\": \"Task 2\",\r\n  \"description\": \"This is the test for task2\",\r\n  \"timeZone\": \"UTC-09\",\r\n  \"dailyList\": \"2022-10-30T20:21:10Z\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:7268/api/TaskList",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "7268",
+									"path": [
+										"api",
+										"TaskList"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Invalid timezone",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiVGVzdHR0dCIsImp0aSI6ImUwMzg3ZDdhLTVjMzUtNDMxNC05ZTk5LTFjNjMxZTYxMDg0OSIsImV4cCI6MTY2NzM0MjIxMSwiaXNzIjoiVG9kb0lkZW50aXR5IiwiYXVkIjoiVG9kb0lkZW50aXR5VXNlciJ9.yYFK70TxRSG5oItbW8PSzQ6A4ETc7RQM_ZDhddLRF3U",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"title\": \"Task 2\",\r\n  \"description\": \"This is the test for task2\",\r\n  \"timeZone\": \"Some wrong timezone\",\r\n  \"dailyList\": \"2022-10-30T20:21:10Z\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:7268/api/TaskList",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "7268",
+									"path": [
+										"api",
+										"TaskList"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Invalid title",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiVGVzdHR0dCIsImp0aSI6ImUwMzg3ZDdhLTVjMzUtNDMxNC05ZTk5LTFjNjMxZTYxMDg0OSIsImV4cCI6MTY2NzM0MjIxMSwiaXNzIjoiVG9kb0lkZW50aXR5IiwiYXVkIjoiVG9kb0lkZW50aXR5VXNlciJ9.yYFK70TxRSG5oItbW8PSzQ6A4ETc7RQM_ZDhddLRF3U",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"title\": \"Task 2 characters characters characterscharacterscharacterscharacterscharacterscharacterscharacterscharacterscharacters\",\r\n  \"description\": \"This is the test for task2\",\r\n  \"timeZone\": \"UTC-09\",\r\n  \"dailyList\": \"2022-10-30T20:21:10Z\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:7268/api/TaskList",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "7268",
+									"path": [
+										"api",
+										"TaskList"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Invalid description",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiVGVzdHR0dCIsImp0aSI6ImUwMzg3ZDdhLTVjMzUtNDMxNC05ZTk5LTFjNjMxZTYxMDg0OSIsImV4cCI6MTY2NzM0MjIxMSwiaXNzIjoiVG9kb0lkZW50aXR5IiwiYXVkIjoiVG9kb0lkZW50aXR5VXNlciJ9.yYFK70TxRSG5oItbW8PSzQ6A4ETc7RQM_ZDhddLRF3U",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"title\": \"Task 2\",\r\n  \"description\": \"\",\r\n  \"timeZone\": \"UTC-09\",\r\n  \"dailyList\": \"2022-10-30T20:21:10Z\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:7268/api/TaskList",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "7268",
+									"path": [
+										"api",
+										"TaskList"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Invalid daily list",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiVGVzdHR0dCIsImp0aSI6ImUwMzg3ZDdhLTVjMzUtNDMxNC05ZTk5LTFjNjMxZTYxMDg0OSIsImV4cCI6MTY2NzM0MjIxMSwiaXNzIjoiVG9kb0lkZW50aXR5IiwiYXVkIjoiVG9kb0lkZW50aXR5VXNlciJ9.yYFK70TxRSG5oItbW8PSzQ6A4ETc7RQM_ZDhddLRF3U",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"title\": \"Task 2\",\r\n  \"description\": \"This is the test for task2\",\r\n  \"timeZone\": \"UTC-09\",\r\n  \"dailyList\": \"\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:7268/api/TaskList",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "7268",
+									"path": [
+										"api",
+										"TaskList"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Get",
+					"item": [
+						{
+							"name": "Get all user lists",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiVGVzdHR0dCIsImp0aSI6ImUwMzg3ZDdhLTVjMzUtNDMxNC05ZTk5LTFjNjMxZTYxMDg0OSIsImV4cCI6MTY2NzM0MjIxMSwiaXNzIjoiVG9kb0lkZW50aXR5IiwiYXVkIjoiVG9kb0lkZW50aXR5VXNlciJ9.yYFK70TxRSG5oItbW8PSzQ6A4ETc7RQM_ZDhddLRF3U",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:7268/api/TaskList/all?Page=1&Title=Task 2",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "7268",
+									"path": [
+										"api",
+										"TaskList",
+										"all"
+									],
+									"query": [
+										{
+											"key": "Page",
+											"value": "1"
+										},
+										{
+											"key": "Title",
+											"value": "Task 2"
+										},
+										{
+											"key": "Date",
+											"value": "2022-10-31",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Delete",
+					"item": [
+						{
+							"name": "Valid",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiVGVzdHR0dCIsImp0aSI6ImUwMzg3ZDdhLTVjMzUtNDMxNC05ZTk5LTFjNjMxZTYxMDg0OSIsImV4cCI6MTY2NzM0MjIxMSwiaXNzIjoiVG9kb0lkZW50aXR5IiwiYXVkIjoiVG9kb0lkZW50aXR5VXNlciJ9.yYFK70TxRSG5oItbW8PSzQ6A4ETc7RQM_ZDhddLRF3U",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:7268/api/TaskList/1000",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "7268",
+									"path": [
+										"api",
+										"TaskList",
+										"1000"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Doesn't exist",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiVGVzdHR0dCIsImp0aSI6IjkxNTlmYTcwLTRkOWEtNDY1Yi04YTJkLTE2YTM1YzM5ODYwYyIsImV4cCI6MTY2NzE4MDg2MywiaXNzIjoiVG9kb0lkZW50aXR5IiwiYXVkIjoiVG9kb0lkZW50aXR5VXNlciJ9.D2mCQXDO4Kp-QT4-0YFCw6Q88-zUe9pp3axVFNKkPh4",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:7268/api/TaskList?id=1",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "7268",
+									"path": [
+										"api",
+										"TaskList"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Update",
+					"item": [
+						{
+							"name": "Valid",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiVGVzdHR0dCIsImp0aSI6ImUwMzg3ZDdhLTVjMzUtNDMxNC05ZTk5LTFjNjMxZTYxMDg0OSIsImV4cCI6MTY2NzM0MjIxMSwiaXNzIjoiVG9kb0lkZW50aXR5IiwiYXVkIjoiVG9kb0lkZW50aXR5VXNlciJ9.yYFK70TxRSG5oItbW8PSzQ6A4ETc7RQM_ZDhddLRF3U",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"id\": 4,\r\n  \"title\": \"Task 2 - updated\",\r\n  \"description\": \"This is the test for task3 - updated\",\r\n  \"timeZone\": \"Myanmar Standard Time\",\r\n  \"dailyList\": \"2022-10-30T21:22:10Z\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:7268/api/TaskList",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "7268",
+									"path": [
+										"api",
+										"TaskList"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Daily list is not valid",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiVGVzdHR0dCIsImp0aSI6ImUwMzg3ZDdhLTVjMzUtNDMxNC05ZTk5LTFjNjMxZTYxMDg0OSIsImV4cCI6MTY2NzM0MjIxMSwiaXNzIjoiVG9kb0lkZW50aXR5IiwiYXVkIjoiVG9kb0lkZW50aXR5VXNlciJ9.yYFK70TxRSG5oItbW8PSzQ6A4ETc7RQM_ZDhddLRF3U",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"id\": 4,\r\n  \"title\": \"Task 2 - updated\",\r\n  \"description\": \"This is the test for task3 - updated\",\r\n  \"timeZone\": \"Myanmar Standard Time\",\r\n  \"dailyList\": \"\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:7268/api/TaskList",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "7268",
+									"path": [
+										"api",
+										"TaskList"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Description is not valid",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiVGVzdHR0dCIsImp0aSI6ImUwMzg3ZDdhLTVjMzUtNDMxNC05ZTk5LTFjNjMxZTYxMDg0OSIsImV4cCI6MTY2NzM0MjIxMSwiaXNzIjoiVG9kb0lkZW50aXR5IiwiYXVkIjoiVG9kb0lkZW50aXR5VXNlciJ9.yYFK70TxRSG5oItbW8PSzQ6A4ETc7RQM_ZDhddLRF3U",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"id\": 4,\r\n  \"title\": \"Task 2 - updated\",\r\n  \"description\": \"\",\r\n  \"timeZone\": \"Myanmar Standard Time\",\r\n  \"dailyList\": \"2022-10-30T21:22:10Z\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:7268/api/TaskList",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "7268",
+									"path": [
+										"api",
+										"TaskList"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Id doesn't exist",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiVGVzdHR0dCIsImp0aSI6ImUwMzg3ZDdhLTVjMzUtNDMxNC05ZTk5LTFjNjMxZTYxMDg0OSIsImV4cCI6MTY2NzM0MjIxMSwiaXNzIjoiVG9kb0lkZW50aXR5IiwiYXVkIjoiVG9kb0lkZW50aXR5VXNlciJ9.yYFK70TxRSG5oItbW8PSzQ6A4ETc7RQM_ZDhddLRF3U",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"id\": 41,\r\n  \"title\": \"Task 2 - updated\",\r\n  \"description\": \"This is the test for task3 - updated\",\r\n  \"timeZone\": \"Myanmar Standard Time\",\r\n  \"dailyList\": \"2022-10-30T21:22:10Z\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:7268/api/TaskList",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "7268",
+									"path": [
+										"api",
+										"TaskList"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Title is not valid",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiVGVzdHR0dCIsImp0aSI6ImUwMzg3ZDdhLTVjMzUtNDMxNC05ZTk5LTFjNjMxZTYxMDg0OSIsImV4cCI6MTY2NzM0MjIxMSwiaXNzIjoiVG9kb0lkZW50aXR5IiwiYXVkIjoiVG9kb0lkZW50aXR5VXNlciJ9.yYFK70TxRSG5oItbW8PSzQ6A4ETc7RQM_ZDhddLRF3U",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"id\": 4,\r\n  \"title\": \"Task 2 - updated Task 2 - updated Task 2 - updatedTask 2 - updatedTask 2 - updatedTask 2 - updatedTask 2 - updated\",\r\n  \"description\": \"This is the test for task3 - updated\",\r\n  \"timeZone\": \"Myanmar Standard Time\",\r\n  \"dailyList\": \"2022-10-30T21:22:10Z\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:7268/api/TaskList",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "7268",
+									"path": [
+										"api",
+										"TaskList"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Task",
+			"item": [
+				{
+					"name": "Create",
+					"item": [
+						{
+							"name": "Valid",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiVGVzdHR0dCIsImp0aSI6IjkxNTlmYTcwLTRkOWEtNDY1Yi04YTJkLTE2YTM1YzM5ODYwYyIsImV4cCI6MTY2NzE4MDg2MywiaXNzIjoiVG9kb0lkZW50aXR5IiwiYXVkIjoiVG9kb0lkZW50aXR5VXNlciJ9.D2mCQXDO4Kp-QT4-0YFCw6Q88-zUe9pp3axVFNKkPh4",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"taskListId\": 5,\r\n  \"title\": \"Test Task1\",\r\n  \"description\": \"Test Task1\",\r\n  \"deadline\": \"2022-10-31T01:07:42.917Z\",\r\n  \"isDone\": true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:7268/api/Task",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "7268",
+									"path": [
+										"api",
+										"Task"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Invalid isDone property",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiVGVzdHR0dCIsImp0aSI6ImUwMzg3ZDdhLTVjMzUtNDMxNC05ZTk5LTFjNjMxZTYxMDg0OSIsImV4cCI6MTY2NzM0MjIxMSwiaXNzIjoiVG9kb0lkZW50aXR5IiwiYXVkIjoiVG9kb0lkZW50aXR5VXNlciJ9.yYFK70TxRSG5oItbW8PSzQ6A4ETc7RQM_ZDhddLRF3U",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"taskListId\": 5,\r\n  \"title\": \"Test Task1\",\r\n  \"description\": \"Test Task1\",\r\n  \"deadline\": \"2022-10-31T01:07:42.917Z\",\r\n  \"isDone\": invalidtrue\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:7268/api/Task",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "7268",
+									"path": [
+										"api",
+										"Task"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Invalid description",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiVGVzdHR0dCIsImp0aSI6ImUwMzg3ZDdhLTVjMzUtNDMxNC05ZTk5LTFjNjMxZTYxMDg0OSIsImV4cCI6MTY2NzM0MjIxMSwiaXNzIjoiVG9kb0lkZW50aXR5IiwiYXVkIjoiVG9kb0lkZW50aXR5VXNlciJ9.yYFK70TxRSG5oItbW8PSzQ6A4ETc7RQM_ZDhddLRF3U",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"taskListId\": 5,\r\n  \"title\": \"Test Task1\",\r\n  \"description\": \"\",\r\n  \"deadline\": \"2022-10-31T01:07:42.917Z\",\r\n  \"isDone\": true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:7268/api/Task",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "7268",
+									"path": [
+										"api",
+										"Task"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Deadline is invalid",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiVGVzdHR0dCIsImp0aSI6ImUwMzg3ZDdhLTVjMzUtNDMxNC05ZTk5LTFjNjMxZTYxMDg0OSIsImV4cCI6MTY2NzM0MjIxMSwiaXNzIjoiVG9kb0lkZW50aXR5IiwiYXVkIjoiVG9kb0lkZW50aXR5VXNlciJ9.yYFK70TxRSG5oItbW8PSzQ6A4ETc7RQM_ZDhddLRF3U",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"taskListId\": 5,\r\n  \"title\": \"Test Task1\",\r\n  \"description\": \"Test Task1\",\r\n  \"deadline\": \"\",\r\n  \"isDone\": true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:7268/api/Task",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "7268",
+									"path": [
+										"api",
+										"Task"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Invalid title",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiVGVzdHR0dCIsImp0aSI6ImUwMzg3ZDdhLTVjMzUtNDMxNC05ZTk5LTFjNjMxZTYxMDg0OSIsImV4cCI6MTY2NzM0MjIxMSwiaXNzIjoiVG9kb0lkZW50aXR5IiwiYXVkIjoiVG9kb0lkZW50aXR5VXNlciJ9.yYFK70TxRSG5oItbW8PSzQ6A4ETc7RQM_ZDhddLRF3U",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"taskListId\": 5,\r\n  \"title\": \"Test Task1Test Task1Test Task1Test Task1Test Task1Test Task1Test Task1Test Task1Test Task1Test Task1Test Task1\",\r\n  \"description\": \"Test Task1\",\r\n  \"deadline\": \"2022-10-31T01:07:42.917Z\",\r\n  \"isDone\": true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:7268/api/Task",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "7268",
+									"path": [
+										"api",
+										"Task"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Task list is not valid/not exist",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiVGVzdHR0dCIsImp0aSI6ImUwMzg3ZDdhLTVjMzUtNDMxNC05ZTk5LTFjNjMxZTYxMDg0OSIsImV4cCI6MTY2NzM0MjIxMSwiaXNzIjoiVG9kb0lkZW50aXR5IiwiYXVkIjoiVG9kb0lkZW50aXR5VXNlciJ9.yYFK70TxRSG5oItbW8PSzQ6A4ETc7RQM_ZDhddLRF3U",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"taskListId\": 6,\r\n  \"title\": \"Test Task1\",\r\n  \"description\": \"Test Task1\",\r\n  \"deadline\": \"2022-10-31T01:07:42.917Z\",\r\n  \"isDone\": true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:7268/api/Task",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "7268",
+									"path": [
+										"api",
+										"Task"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Delete",
+					"item": [
+						{
+							"name": "Valid",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiVGVzdHR0dCIsImp0aSI6IjkxNTlmYTcwLTRkOWEtNDY1Yi04YTJkLTE2YTM1YzM5ODYwYyIsImV4cCI6MTY2NzE4MDg2MywiaXNzIjoiVG9kb0lkZW50aXR5IiwiYXVkIjoiVG9kb0lkZW50aXR5VXNlciJ9.D2mCQXDO4Kp-QT4-0YFCw6Q88-zUe9pp3axVFNKkPh4",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:7268/api/Task/11",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "7268",
+									"path": [
+										"api",
+										"Task",
+										"11"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Doesn't exist",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiVGVzdHR0dCIsImp0aSI6ImUwMzg3ZDdhLTVjMzUtNDMxNC05ZTk5LTFjNjMxZTYxMDg0OSIsImV4cCI6MTY2NzM0MjIxMSwiaXNzIjoiVG9kb0lkZW50aXR5IiwiYXVkIjoiVG9kb0lkZW50aXR5VXNlciJ9.yYFK70TxRSG5oItbW8PSzQ6A4ETc7RQM_ZDhddLRF3U",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:7268/api/Task/1100",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "7268",
+									"path": [
+										"api",
+										"Task",
+										"1100"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Update",
+					"item": [
+						{
+							"name": "Valid",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiVGVzdHR0dCIsImp0aSI6IjE1MzZhZWFjLWNlZTItNDk2Zi05NmEzLThhNTQ0MGViOGU4NSIsImV4cCI6MTY2NzM0ODkyNSwiaXNzIjoiVG9kb0lkZW50aXR5IiwiYXVkIjoiVG9kb0lkZW50aXR5VXNlciJ9.lVkqXukKVesiainlfcZ7pCLalq8uQfj-a9vaoPHNGOE",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"id\": 9,\r\n  \"title\": \"Task 1 - update\",\r\n  \"description\": \"Task 1 - update description\",\r\n  \"deadline\": \"2022-10-31T01:25:25.386Z\",\r\n  \"isDone\": true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:7268/api/Task",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "7268",
+									"path": [
+										"api",
+										"Task"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Description is not valid",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiVGVzdHR0dCIsImp0aSI6IjE1MzZhZWFjLWNlZTItNDk2Zi05NmEzLThhNTQ0MGViOGU4NSIsImV4cCI6MTY2NzM0ODkyNSwiaXNzIjoiVG9kb0lkZW50aXR5IiwiYXVkIjoiVG9kb0lkZW50aXR5VXNlciJ9.lVkqXukKVesiainlfcZ7pCLalq8uQfj-a9vaoPHNGOE",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"id\": 9,\r\n  \"title\": \"Task 1 - update\",\r\n  \"description\": \"\",\r\n  \"deadline\": \"2022-10-31T01:25:25.386Z\",\r\n  \"isDone\": true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:7268/api/Task",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "7268",
+									"path": [
+										"api",
+										"Task"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Title is not valid",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiVGVzdHR0dCIsImp0aSI6IjE1MzZhZWFjLWNlZTItNDk2Zi05NmEzLThhNTQ0MGViOGU4NSIsImV4cCI6MTY2NzM0ODkyNSwiaXNzIjoiVG9kb0lkZW50aXR5IiwiYXVkIjoiVG9kb0lkZW50aXR5VXNlciJ9.lVkqXukKVesiainlfcZ7pCLalq8uQfj-a9vaoPHNGOE",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"id\": 9,\r\n  \"title\": \"Task 1 - update Task 1 - update Task 1 - update Task 1 - update Task 1 - update Task 1 - update Task 1 - update Task 1 - update\",\r\n  \"description\": \"Task 1 - update description\",\r\n  \"deadline\": \"2022-10-31T01:25:25.386Z\",\r\n  \"isDone\": true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:7268/api/Task",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "7268",
+									"path": [
+										"api",
+										"Task"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Deadline is not valid",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiVGVzdHR0dCIsImp0aSI6IjE1MzZhZWFjLWNlZTItNDk2Zi05NmEzLThhNTQ0MGViOGU4NSIsImV4cCI6MTY2NzM0ODkyNSwiaXNzIjoiVG9kb0lkZW50aXR5IiwiYXVkIjoiVG9kb0lkZW50aXR5VXNlciJ9.lVkqXukKVesiainlfcZ7pCLalq8uQfj-a9vaoPHNGOE",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"id\": 9,\r\n  \"title\": \"Task 1 - update\",\r\n  \"description\": \"Task 1 - update description\",\r\n  \"deadline\": \"Invalid deadline\",\r\n  \"isDone\": true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:7268/api/Task",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "7268",
+									"path": [
+										"api",
+										"Task"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Id doesn't exist",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiVGVzdHR0dCIsImp0aSI6IjE1MzZhZWFjLWNlZTItNDk2Zi05NmEzLThhNTQ0MGViOGU4NSIsImV4cCI6MTY2NzM0ODkyNSwiaXNzIjoiVG9kb0lkZW50aXR5IiwiYXVkIjoiVG9kb0lkZW50aXR5VXNlciJ9.lVkqXukKVesiainlfcZ7pCLalq8uQfj-a9vaoPHNGOE",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"id\": 111,\r\n  \"title\": \"Task 1 - update\",\r\n  \"description\": \"Task 1 - update description\",\r\n  \"deadline\": \"2022-10-31T01:25:25.386Z\",\r\n  \"isDone\": true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:7268/api/Task",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "7268",
+									"path": [
+										"api",
+										"Task"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Get",
+					"item": [
+						{
+							"name": "Get all user tasks that belong to list",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiVGVzdHR0dCIsImp0aSI6IjE1MzZhZWFjLWNlZTItNDk2Zi05NmEzLThhNTQ0MGViOGU4NSIsImV4cCI6MTY2NzM0ODkyNSwiaXNzIjoiVG9kb0lkZW50aXR5IiwiYXVkIjoiVG9kb0lkZW50aXR5VXNlciJ9.lVkqXukKVesiainlfcZ7pCLalq8uQfj-a9vaoPHNGOE",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:7268/api/Task/all?Deadline=2022-10-31&IsDone=true&TaskListId=5",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "7268",
+									"path": [
+										"api",
+										"Task",
+										"all"
+									],
+									"query": [
+										{
+											"key": "Deadline",
+											"value": "2022-10-31"
+										},
+										{
+											"key": "IsDone",
+											"value": "true"
+										},
+										{
+											"key": "TaskListId",
+											"value": "5"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Timezone",
+			"item": [
+				{
+					"name": "Get all timezones with offset",
 					"request": {
 						"auth": {
 							"type": "bearer",
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiVGVzdHR0dCIsImp0aSI6IjkxNTlmYTcwLTRkOWEtNDY1Yi04YTJkLTE2YTM1YzM5ODYwYyIsImV4cCI6MTY2NzE4MDg2MywiaXNzIjoiVG9kb0lkZW50aXR5IiwiYXVkIjoiVG9kb0lkZW50aXR5VXNlciJ9.D2mCQXDO4Kp-QT4-0YFCw6Q88-zUe9pp3axVFNKkPh4",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiVGVzdHR0dCIsImp0aSI6ImUwMzg3ZDdhLTVjMzUtNDMxNC05ZTk5LTFjNjMxZTYxMDg0OSIsImV4cCI6MTY2NzM0MjIxMSwiaXNzIjoiVG9kb0lkZW50aXR5IiwiYXVkIjoiVG9kb0lkZW50aXR5VXNlciJ9.yYFK70TxRSG5oItbW8PSzQ6A4ETc7RQM_ZDhddLRF3U",
 									"type": "string"
 								}
 							]
 						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n  \"title\": \"Task 2\",\r\n  \"description\": \"This is the test for task2\",\r\n  \"timeZone\": \"UTC-09\",\r\n  \"dailyList\": \"2022-10-30T20:21:10Z\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "https://localhost:7268/api/TaskList",
-							"protocol": "https",
-							"host": [
-								"localhost"
-							],
-							"port": "7268",
-							"path": [
-								"api",
-								"TaskList"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Update task list",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiTWFya29Qcm9qb3ZpYyIsImp0aSI6IjI2M2I5YzRlLTBlZDAtNDE2NC1iNjFlLWU2YWQ5NjEyZjk4MyIsImV4cCI6MTY2NzE2MTI3MCwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDoyNDI4OCIsImF1ZCI6Imh0dHA6IC8vbG9jYWxob3N0OjQyMDAifQ.9oQs4OWKQVB9SsskaC7tJtnACgZtLN5yyLqm0dsBO8s",
-									"type": "string"
-								}
-							]
-						},
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n  \"id\": 1030,\r\n  \"title\": \"Task 1 - updated\",\r\n  \"description\": \"This is the test for task1 - updated\",\r\n  \"timeZone\": \"Myanmar Standard Time\",\r\n  \"dailyList\": \"2022-10-30T20:21:10Z\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "https://localhost:7031/api/TaskList",
-							"protocol": "https",
-							"host": [
-								"localhost"
-							],
-							"port": "7031",
-							"path": [
-								"api",
-								"TaskList"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get all user lists",
-					"request": {
 						"method": "GET",
-						"header": []
-					},
-					"response": []
-				},
-				{
-					"name": "Delete task list",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiVGVzdHR0dCIsImp0aSI6IjkxNTlmYTcwLTRkOWEtNDY1Yi04YTJkLTE2YTM1YzM5ODYwYyIsImV4cCI6MTY2NzE4MDg2MywiaXNzIjoiVG9kb0lkZW50aXR5IiwiYXVkIjoiVG9kb0lkZW50aXR5VXNlciJ9.D2mCQXDO4Kp-QT4-0YFCw6Q88-zUe9pp3axVFNKkPh4",
-									"type": "string"
-								}
-							]
-						},
-						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:7268/api/TaskList?id=1",
+							"raw": "https://localhost:7268/api/Timezone/all",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -154,13 +1160,8 @@
 							"port": "7268",
 							"path": [
 								"api",
-								"TaskList"
-							],
-							"query": [
-								{
-									"key": "id",
-									"value": "1"
-								}
+								"Timezone",
+								"all"
 							]
 						}
 					},
@@ -169,112 +1170,45 @@
 			]
 		},
 		{
-			"name": "Task",
+			"name": "Status",
 			"item": [
 				{
-					"name": "Create new task",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiVGVzdHR0dCIsImp0aSI6IjkxNTlmYTcwLTRkOWEtNDY1Yi04YTJkLTE2YTM1YzM5ODYwYyIsImV4cCI6MTY2NzE4MDg2MywiaXNzIjoiVG9kb0lkZW50aXR5IiwiYXVkIjoiVG9kb0lkZW50aXR5VXNlciJ9.D2mCQXDO4Kp-QT4-0YFCw6Q88-zUe9pp3axVFNKkPh4",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n  \"taskListId\": 3,\r\n  \"title\": \"Test Task\",\r\n  \"description\": \"Test Task\",\r\n  \"deadline\": \"2022-10-31T01:07:42.917Z\",\r\n  \"isDone\": true\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "https://localhost:7268/api/Task",
-							"protocol": "https",
-							"host": [
-								"localhost"
-							],
-							"port": "7268",
-							"path": [
-								"api",
-								"Task"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Delete task",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "https://localhost:7268/api/Task/11",
-							"protocol": "https",
-							"host": [
-								"localhost"
-							],
-							"port": "7268",
-							"path": [
-								"api",
-								"Task",
-								"11"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Update task",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiVGVzdHR0dCIsImp0aSI6IjkxNTlmYTcwLTRkOWEtNDY1Yi04YTJkLTE2YTM1YzM5ODYwYyIsImV4cCI6MTY2NzE4MDg2MywiaXNzIjoiVG9kb0lkZW50aXR5IiwiYXVkIjoiVG9kb0lkZW50aXR5VXNlciJ9.D2mCQXDO4Kp-QT4-0YFCw6Q88-zUe9pp3axVFNKkPh4",
-									"type": "string"
-								}
-							]
-						},
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n  \"id\": 6,\r\n  \"title\": \"Test111\",\r\n  \"description\": \"Testt1111\",\r\n  \"timeZone\": \"UTC-09\",\r\n  \"dailyList\": \"2022-10-31T01:22:13.788Z\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "https://localhost:7268/api/Task",
-							"protocol": "https",
-							"host": [
-								"localhost"
-							],
-							"port": "7268",
-							"path": [
-								"api",
-								"Task"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get all user tasks that belong to list",
+					"name": "Availability get",
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7268/api/status",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7268",
+							"path": [
+								"api",
+								"status"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Availability post",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7268/api/status",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7268",
+							"path": [
+								"api",
+								"status"
+							]
+						}
 					},
 					"response": []
 				}
