@@ -21,7 +21,7 @@ namespace Todo.Api.Application.Features.Tasks.Commands.CreateTask
 
             RuleFor(x => x.IsDone).NotEmpty();
 
-            RuleFor(x => x.TaskListId).NotEmpty(); //TODO check does it exists
+            RuleFor(x => x.TaskListId).NotEmpty();
 
         }
     }

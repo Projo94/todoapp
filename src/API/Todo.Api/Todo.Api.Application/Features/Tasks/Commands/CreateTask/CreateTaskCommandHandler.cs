@@ -43,18 +43,18 @@ namespace Todo.Api.Application.Features.Task.Commands.CreateTask
             {
                 var task = _mapper.Map<Entities.Task>(request);
 
-                task = await _taskRepository.AddAsync(task);
-
-                await _taskRepository.SaveChangesAsync();
-
-                createTaskCommandResponse.Task = _mapper.Map<TaskDto>(task);
-
                 var taskList = await _taskListRepository.GetByIdAsync(task.TaskListId);
 
                 if (taskList == null)
                 {
                     throw new NotFoundException(nameof(Entities.TaskList), request.TaskListId);
                 }
+
+                task = await _taskRepository.AddAsync(task);
+
+                await _taskRepository.SaveChangesAsync();
+
+                createTaskCommandResponse.Task = _mapper.Map<TaskDto>(task);
 
                 var timezone = taskList.TimeZone;
 
@@ -65,6 +65,5 @@ namespace Todo.Api.Application.Features.Task.Commands.CreateTask
 
             return createTaskCommandResponse;
         }
-
     }
 }
