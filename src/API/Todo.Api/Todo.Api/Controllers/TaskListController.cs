@@ -8,6 +8,7 @@ using Todo.Api.Application.Features.TaskLists.Commands.CreateTaskList;
 using Todo.Api.Application.Features.TaskLists.Commands.DeleteTaskList;
 using Todo.Api.Application.Features.TaskLists.Commands.UpdateTaskList;
 using Todo.Api.Application.Features.TaskLists.Queries.GetTaskList;
+using Todo.Api.Application.Filtering;
 
 namespace Todo.Api.Controllers
 {
@@ -26,12 +27,13 @@ namespace Todo.Api.Controllers
         [HttpGet("all", Name = "GetTaskListAsync")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesDefaultResponseType]
-        public async Task<ActionResult<List<TaskListVm>>> GetTaskListAsync([FromQuery] Application.Filtering.ListFilterDto filterDto)
+        public async Task<ActionResult<List<TaskListVm>>> GetTaskListAsync([FromQuery] ListFilterDto filterDto)
         {
-            var filter = _mapper.Map<Application.Filtering.ListFilter>(filterDto);
+            var filter = _mapper.Map<ListFilter>(filterDto);
             filter.UserId = User.Identity?.Name ?? throw new Exception();
 
             var dtos = await Mediator.Send(new GetTaskListQuery { filter = filter });
+
             return Ok(dtos);
         }
 
@@ -66,7 +68,6 @@ namespace Todo.Api.Controllers
         public async Task<ActionResult> Update([FromBody] UpdateTaskListDto updateTaskListDto)
         {
             var updateTaskListCommand = _mapper.Map<UpdateTaskListCommand>(updateTaskListDto);
-
             updateTaskListCommand.CreatedByUserId = User.Identity?.Name ?? throw new Exception();
 
             await Mediator.Send(updateTaskListCommand);
