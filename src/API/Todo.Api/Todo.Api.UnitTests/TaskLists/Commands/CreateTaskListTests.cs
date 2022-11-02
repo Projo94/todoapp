@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using Moq;
 using Shouldly;
-
 using Todo.Api.Application.Features.TaskLists.Commands.CreateTaskList;
 using Todo.Api.Domain.Entities;
 using Todo.Api.Application.Profiles;
@@ -9,7 +8,7 @@ using Todo.Api.UnitTests.Mocks;
 using Xunit;
 using Todo.Api.Application.Contracts.Persistence;
 
-namespace Todo.Api.UnitTests.TaskLists
+namespace Todo.Api.UnitTests.TaskLists.Commands
 {
     public class CreateTaskListTests
     {
