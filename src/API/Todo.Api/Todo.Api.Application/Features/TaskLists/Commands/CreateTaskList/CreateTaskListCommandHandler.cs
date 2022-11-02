@@ -2,7 +2,7 @@
 using MediatR;
 using Todo.Api.Application.Contracts.Persistence;
 using Todo.Api.Application.Features.TaskList.Queries.GetTaskList;
-using Enities = Todo.Api.Domain.Entities;
+using Entities = Todo.Api.Domain.Entities;
 
 namespace Todo.Api.Application.Features.TaskLists.Commands.CreateTaskList
 {
@@ -10,9 +10,9 @@ namespace Todo.Api.Application.Features.TaskLists.Commands.CreateTaskList
     {
         private readonly IMapper _mapper;
 
-        private readonly ITaskListRepository _taskListRepository;
+        private readonly IAsyncRepository<Entities.TaskList> _taskListRepository;
 
-        public CreateTaskListCommandHandler(IMapper mapper, ITaskListRepository taskListRepository)
+        public CreateTaskListCommandHandler(IMapper mapper, IAsyncRepository<Entities.TaskList> taskListRepository)
         {
             _mapper = mapper;
             _taskListRepository = taskListRepository;
@@ -37,7 +37,7 @@ namespace Todo.Api.Application.Features.TaskLists.Commands.CreateTaskList
             }
             else
             {
-                var taskList = _mapper.Map<Enities.TaskList>(request);
+                var taskList = _mapper.Map<Entities.TaskList>(request);
 
                 taskList = await _taskListRepository.AddAsync(taskList);
 

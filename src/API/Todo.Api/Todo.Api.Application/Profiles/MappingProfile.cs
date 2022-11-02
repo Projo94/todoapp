@@ -10,7 +10,7 @@ using Entities = Todo.Api.Domain.Entities;
 
 namespace Todo.Api.Application.Profiles
 {
-    class MappingProfile : Profile
+    public class MappingProfile : Profile
     {
         public MappingProfile()
         {
@@ -36,6 +36,8 @@ namespace Todo.Api.Application.Profiles
             CreateMap<TaskFilter, Models.Filters.TaskFilterDto>().ReverseMap();
 
             CreateMap<Entities.Task, Features.Task.Queries.GetTask.TaskVm>().ReverseMap();
+
+            CreateMap<CreateTaskListCommand, Entities.TaskList>().ReverseMap();
         }
     }
 }
