@@ -22,8 +22,4 @@
 
 - Update user's timezone (each user can choose one timezone and all timestamps should be in that timezone[task deadline property]. If the user chooses a different timezone when fetching data, all timestamps should be automatically adjusted).
 
-- The use should get an email notification about how many tasks they've completed that day. The email should be sent at midnight according to the time zone the user has selected.
-
-
-
-
+- The user should get an email notification about how many tasks they've completed that day. The email should be sent at midnight according to the time zone the user has selected.
